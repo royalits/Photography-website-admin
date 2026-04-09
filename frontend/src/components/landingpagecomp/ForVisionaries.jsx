@@ -1,6 +1,9 @@
 import { CheckCircle, Star, CreditCard, Image, Wallet, TrendingUp } from "lucide-react";
+import { useState } from "react";
+import OnboardingModal from "./onboarding/OnboardingModal";
 
 const ForVisionaries = () => {
+      const [openModal, setOpenModal] = useState(false);
   return (
     <section className="bg-[#100528] py-28 px-6 relative overflow-hidden">
 
@@ -143,7 +146,9 @@ const ForVisionaries = () => {
             </div>
 
             {/* BUTTON */}
-            <button className="
+            <button 
+             onClick={() => setOpenModal(true)}
+             className="
               mt-10 w-full py-3 rounded-xl
               bg-purple-400/20
               text-white font-medium
@@ -155,6 +160,10 @@ const ForVisionaries = () => {
           </div>
         </div>
       </div>
+
+      {openModal && (
+        <OnboardingModal onClose={() => setOpenModal(false)} />
+      )}
     </section>
   );
 };
