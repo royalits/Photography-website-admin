@@ -7,19 +7,19 @@ const testimonials = [
     name: "Elena Vance",
     role: "ART DIRECTOR",
     text: "Found the perfect quartet for my gallery opening. The booking process was so smooth it felt like magic.",
-    img: "/user1.jpg",
+    img: "/testimonial.jpg",
   },
   {
     name: "Marcus Thorne",
     role: "PROFESSIONAL DJ",
     text: "ClickNow transformed my side hustle into a full-time career. The quality of clients here is unmatched.",
-    img: "/user2.jpg",
+    img: "/testimonial2.jpg",
   },
   {
     name: "Sofia Ricci",
     role: "EVENT PLANNER",
     text: "The only platform that understands the intersection of high art and modern digital convenience.",
-    img: "/user3.jpg",
+    img: "/testimonial1.jpg",
   },
 ];
 

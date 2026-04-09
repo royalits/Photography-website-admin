@@ -1,6 +1,8 @@
 // Step3Professional.jsx
 import Accordion from "./Accordion";
 import ChipSelect from "./ChipSelect";
+import SearchDropdown from "./SearchDropdown";
+import CityMultiSelect from "./CityMultiSelect";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
@@ -15,14 +17,6 @@ const stateCities = {
 function LocationBlock({ index, onSave, onRemove }) {
   const [state, setState] = useState("");
   const [selectedCities, setSelectedCities] = useState([]);
-  const [cityDropOpen, setCityDropOpen] = useState(false);
-
-  const cities = stateCities[state] || [];
-
-  const toggleCity = (city) =>
-    setSelectedCities((prev) =>
-      prev.includes(city) ? prev.filter((c) => c !== city) : [...prev, city]
-    );
 
   const handleSave = () => {
     if (state && selectedCities.length) onSave({ state, cities: selectedCities });
@@ -36,62 +30,21 @@ function LocationBlock({ index, onSave, onRemove }) {
         </button>
       )}
 
-      <div>
-        <label className="block text-white/60 mb-2">Working State</label>
-        <select
-          className="w-full input"
-          value={state}
-          onChange={(e) => { setState(e.target.value); setSelectedCities([]); }}
-        >
-          <option className="text-black" value="">Select state</option>
-          {Object.keys(stateCities).map((s) => (
-            <option key={s} className="text-black">{s}</option>
-          ))}
-        </select>
-      </div>
+      <SearchDropdown
+        label="Working State"
+        options={Object.keys(stateCities)}
+        value={state}
+        onChange={(v) => { setState(v); setSelectedCities([]); }}
+        placeholder="Select state"
+      />
 
       {state && (
-        <div className="relative">
-          <label className="block text-white/60 mb-2">Working City</label>
-          <div
-            onClick={() => setCityDropOpen(!cityDropOpen)}
-            className="input flex justify-between cursor-pointer"
-          >
-            <span className="text-white/50">
-              {selectedCities.length ? `${selectedCities.length} selected` : "Select cities"}
-            </span>
-            <span className="text-white/40 text-xs">▾</span>
-          </div>
-
-          {cityDropOpen && (
-            <div className="absolute z-20 mt-1 w-full bg-[#1c1530] border border-white/10 rounded-xl p-2 max-h-40 overflow-y-auto scrollbar-hide">
-              {cities.map((city) => (
-                <div
-                  key={city}
-                  onClick={() => toggleCity(city)}
-                  className={`px-3 py-2 rounded-lg cursor-pointer text-sm mb-1 ${
-                    selectedCities.includes(city)
-                      ? "bg-purple-600 text-white"
-                      : "text-white/70 hover:bg-white/10"
-                  }`}
-                >
-                  {city}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {selectedCities.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-2">
-              {selectedCities.map((city) => (
-                <span key={city} className="chip flex items-center gap-1">
-                  {city}
-                  <X size={12} className="cursor-pointer" onClick={() => toggleCity(city)} />
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
+        <CityMultiSelect
+          label="Working City"
+          options={stateCities[state]}
+          selected={selectedCities}
+          onChange={setSelectedCities}
+        />
       )}
 
       <button onClick={handleSave} className="btn-light mt-1">Save Location</button>
@@ -135,18 +88,16 @@ export default function Step3({ registerValidate }) {
       <p className="text-white/50 mb-6">This information will be visible to customers.</p>
 
       <div className="space-y-4">
-
         <Accordion title="Work Information">
-          <select className="w-full input mb-4" value={experience} onChange={(e) => setExperience(e.target.value)}>
-            <option className="text-black" value="">Years of Experience</option>
-            <option className="text-black">1 Year</option>
-            <option className="text-black">2 Years</option>
-            <option className="text-black">3 Years</option>
-            <option className="text-black">4 Years</option>
-            <option className="text-black">5+ Years</option>
-          </select>
+          <SearchDropdown
+            label="Years of Experience"
+            options={["1 Year", "2 Years", "3 Years", "4 Years", "5+ Years"]}
+            value={experience}
+            onChange={setExperience}
+            placeholder="Select experience"
+          />
 
-          <p className="text-white/60 mb-2">Available Working Days</p>
+          <p className="text-white/60 mt-4 mb-2">Available Working Days</p>
           <ChipSelect options={weekDays} selected={days} setSelected={setDays} />
 
           <label className="block text-white/60 mt-5 mb-2">Short Bio</label>
@@ -204,7 +155,6 @@ export default function Step3({ registerValidate }) {
           <label className="block text-white/60 mt-5 mb-2">Awards & Achievements (optional)</label>
           <input placeholder="Awards & Achievements" className="w-full input" />
         </Accordion>
-
       </div>
     </div>
   );

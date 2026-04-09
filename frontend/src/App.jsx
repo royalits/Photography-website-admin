@@ -8,17 +8,21 @@ import ProfessionalDetails from "./pages/ProfessionalDetails";
 // import Customers from "./pages/Customers";
 // import Bookings from "./pages/Bookings";
  import Services from "./pages/Services";
-import LandingPage from "./pages/LandingPage";
 // import Payments from "./pages/Payments";
 // import Reports from "./pages/Reports";
 // import Support from "./pages/Support";
 // import Settings from "./pages/Settings";
+import LandingPage from "./pages/LandingPage";
+import Contact from "./components/landingpagecomp/Contact";
+import Support from "./components/landingpagecomp/Support";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/support" element={<Support />} />
         <Route
           path="/*"
           element={

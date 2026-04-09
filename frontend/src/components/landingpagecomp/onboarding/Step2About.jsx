@@ -1,6 +1,16 @@
 // Step2About.jsx
 import { useState, useEffect } from "react";
 import ChipSelect from "./ChipSelect";
+import SearchDropdown from "./SearchDropdown";
+
+const stateOptions = ["Madhya Pradesh", "Uttar Pradesh", "Maharashtra", "Delhi", "Rajasthan"];
+const cityMap = {
+  "Madhya Pradesh": ["Indore", "Bhopal", "Gwalior", "Jabalpur", "Ujjain"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Agra", "Varanasi", "Noida"],
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
+  "Delhi": ["New Delhi", "Dwarka", "Rohini", "Saket", "Lajpat Nagar"],
+  "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer"],
+};
 
 export default function Step2({ registerValidate }) {
   const [name, setName] = useState("");
@@ -12,10 +22,7 @@ export default function Step2({ registerValidate }) {
   const [pincode, setPincode] = useState("");
   const [languages, setLanguages] = useState([]);
 
-  const languageOptions = [
-    "English", "Hindi", "Tamil", "Telugu",
-    "Kannada", "Malayalam", "Bengali", "Marathi"
-  ];
+  const languageOptions = ["English", "Hindi", "Tamil", "Telugu", "Kannada", "Malayalam", "Bengali", "Marathi"];
 
   useEffect(() => {
     registerValidate(() => {
@@ -36,40 +43,44 @@ export default function Step2({ registerValidate }) {
       <h2 className="text-xl text-white mb-2">Tell Us About Yourself</h2>
       <p className="text-white/50 mb-6">Help us know you better with some basic information.</p>
 
-      <div className="">
-        <label className="block text-white/60 mb-3">Full Name</label>
-        <input placeholder="Enter your full name" className="w-full mb-5 input" value={name} onChange={(e) => setName(e.target.value)} />
+      <div className="space-y-4">
+        <div>
+          <label className="block text-white/60 mb-2">Full Name</label>
+          <input placeholder="Enter your full name" className="w-full input" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
 
-    <label className="block text-white/60 mb-3">Gender</label>
+        <SearchDropdown label="Gender" options={["Male", "Female", "Other"]} value={gender} onChange={setGender} placeholder="Select gender" />
 
-        <select className="w-full mb-5 input" value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option className="text-black" value="">Select gender</option>
-          <option className="text-black">Male</option>
-          <option className="text-black">Female</option>
-        </select>
+        <div>
+          <label className="block text-white/60 mb-2">Date of Birth</label>
+          <input type="date" className="w-full input" value={dob} onChange={(e) => setDob(e.target.value)} />
+        </div>
 
+        <div>
+          <label className="block text-white/60 mb-2">Permanent Address</label>
+          <textarea placeholder="Enter your complete address" className="w-full input" value={address} onChange={(e) => setAddress(e.target.value)} />
+        </div>
 
-    <label className="block text-white/60 mb-3">Date of Birth</label>
-        <input type="date" className="w-full mb-5 input" value={dob} onChange={(e) => setDob(e.target.value)} />
+        <SearchDropdown
+          label="State"
+          options={stateOptions}
+          value={state}
+          onChange={(v) => { setState(v); setCity(""); }}
+          placeholder="Select state"
+        />
 
-           <label className="block text-white/60 mb-3">Permanent Address</label>
+        <SearchDropdown
+          label="City"
+          options={state ? cityMap[state] : []}
+          value={city}
+          onChange={setCity}
+          placeholder={state ? "Select city" : "Select state first"}
+        />
 
-        <textarea placeholder="Enter your complete address" className="w-full mb-5 input" value={address} onChange={(e) => setAddress(e.target.value)} />
-
-    <label className="block text-white/60 mb-3">State</label>
-        <select className="w-full mb-5 input" value={state} onChange={(e) => setState(e.target.value)}>
-          <option className="text-black" value="">Select state</option>
-          <option className="text-black">Madhya Pradesh</option>
-        </select>
-
-<label className="block text-white/60 mb-3">City</label>
-        <select className="w-full mb-5 input" value={city} onChange={(e) => setCity(e.target.value)}>
-          <option className="text-black" value="">Select city</option>
-          <option className="text-black">Indore</option>
-        </select>
-
-<label className="block text-white/60 mb-3">Pincode</label>
-        <input placeholder="Enter pincode" maxLength={6} className="w-full mb-5 input" value={pincode} onChange={(e) => setPincode(e.target.value.replace(/\D/, ""))} />
+        <div>
+          <label className="block text-white/60 mb-2">Pincode</label>
+          <input placeholder="Enter pincode" maxLength={6} className="w-full input" value={pincode} onChange={(e) => setPincode(e.target.value.replace(/\D/, ""))} />
+        </div>
 
         <div>
           <p className="text-white/60 mb-2">Languages Known</p>

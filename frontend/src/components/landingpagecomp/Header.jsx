@@ -55,7 +55,7 @@ const Header = () => {
         </nav>
 
         {/* CTA Button */}
-        <motion.button
+        {/* <motion.button
   whileHover={{ scale: 1.04 }}
   whileTap={{ scale: 0.97 }}
   className="
@@ -73,7 +73,8 @@ const Header = () => {
   "
 >
   Book Now
-</motion.button>
+</motion.button> */}
+<div></div>
       </div>
     </header>
   );

@@ -1,4 +1,5 @@
 import { Globe, AtSign } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -26,28 +27,20 @@ const Footer = () => {
             </p>
 
             <p className="text-white/40 text-sm">
-              © 2024 ClickNow Digital Gallery. All rights reserved.
+              © 2026 ClickNow Digital Gallery. All rights reserved.
             </p>
           </div>
 
           {/* CENTER LINKS */}
           <div className="flex flex-wrap gap-8 text-white/50 text-sm">
-            <a className="hover:text-white transition cursor-pointer">
-              Privacy Policy
-            </a>
-            <a className="hover:text-white transition cursor-pointer">
-              Terms of Service
-            </a>
-            <a className="hover:text-white transition cursor-pointer">
-              Contact
-            </a>
-            <a className="hover:text-white transition cursor-pointer">
-              Support
-            </a>
+            <a className="hover:text-white transition cursor-pointer">Privacy Policy</a>
+            <a className="hover:text-white transition cursor-pointer">Terms of Service</a>
+            <Link to="/contact" className="hover:text-white transition">Contact</Link>
+            <Link to="/support" className="hover:text-white transition">Support</Link>
           </div>
 
           {/* RIGHT ICONS */}
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             
             <div className="
               w-12 h-12 rounded-full
@@ -67,7 +60,7 @@ const Footer = () => {
               <AtSign size={18} className="text-white/70" />
             </div>
 
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
