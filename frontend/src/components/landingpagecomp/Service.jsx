@@ -7,13 +7,13 @@ const services = [
     title: "Photo",
     desc: "Capture timeless moments with award-winning photographers specializing in portraits and events.",
     icon: <Camera size={20} />,
-    img: "/hero.png",
+    img: "/Photo.png",
   },
   {
     title: "Music",
     desc: "Live bands and soloists performing across all genres to set the perfect atmosphere for your night.",
     icon: <Music size={20} />,
-    img: "/hero.png",
+    img: "/Music.png",
   },
   {
     title: "DJ",
@@ -25,19 +25,19 @@ const services = [
     title: "Wedding",
     desc: "All-in-one planning and performance packages to make your special day truly unforgettable.",
     icon: <Heart size={20} />,
-    img: "/hero.png",
+    img: "/Wedding.png",
   },
   {
     title: "Anchor",
     desc: "Professional hosts and emcees to guide your event flow with charisma and precision.",
     icon: <User size={20} />,
-    img: "/hero.png",
+    img: "/Anchor.png",
   },
   {
     title: "Magician",
     desc: "Spellbinding close-up magic and stage shows that will leave your guests in absolute awe.",
     icon: <Sparkles size={20} />,
-    img: "/hero.png",
+    img: "/Magician.png",
   },
 ];
 

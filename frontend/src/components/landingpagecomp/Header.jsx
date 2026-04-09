@@ -1,8 +1,19 @@
 import { motion } from "framer-motion";
 
-const navItems = ["Home", "Services", "How it Works", "Professionals"];
+const navItems = [
+  { label: "Home", id: "home" },
+  { label: "Services", id: "services" },
+  { label: "How it Works", id: "how-it-works" },
+  { label: "Professionals", id: "professionals" },
+  { label: "Testimonials", id: "testimonials" },
+];
 
 const Header = () => {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       
@@ -25,17 +36,18 @@ const Header = () => {
           {navItems.map((item, index) => (
             <motion.a
               key={index}
+              onClick={() => scrollTo(item.id)}
               whileHover={{ y: -1 }}
               className={`relative cursor-pointer transition ${
-                item === "Home"
+                item.label === "Home"
                   ? "text-purple-300"
                   : "text-white/60 hover:text-white"
               }`}
             >
-              {item}
+              {item.label}
 
               {/* Active underline */}
-              {item === "Home" && (
+              {item.label === "Home" && (
                 <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full" />
               )}
             </motion.a>
