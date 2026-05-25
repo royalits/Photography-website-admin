@@ -33,10 +33,11 @@ const Footer = () => {
 
           {/* CENTER LINKS */}
           <div className="flex flex-wrap gap-8 text-white/50 text-sm">
-            <a className="hover:text-white transition cursor-pointer">Privacy Policy</a>
-            <a className="hover:text-white transition cursor-pointer">Terms of Service</a>
-            <Link to="/contact" className="hover:text-white transition">Contact</Link>
+            <Link to='https://docs.google.com/document/d/1JaZfzC0gLrdzMoYRrsUezmE-SymflSUThUKh8d5u4vk/edit?usp=drivesdk' target="_blank" className="hover:text-white transition cursor-pointer">Privacy Policy</Link>
+            <Link className="hover:text-white transition cursor-pointer">Terms of Service</Link>
+            <Link to="https://docs.google.com/document/d/1c2KHoqLVD4_sox67pvhZroLQ4i0uXSLUJRPWpQinxiM/edit?usp=drivesdk" target="_blank" className="hover:text-white transition">Contact</Link>
             <Link to="/support" className="hover:text-white transition">Support</Link>
+            <Link to="https://docs.google.com/document/d/1TOOqklF1mGm7wXlYkC8OWqOCGFj9QtIRn9IW_sddwww/edit?usp=drivesdk" target="_blank" className="hover:text-white transition">About Us</Link>
           </div>
 
           {/* RIGHT ICONS */}
