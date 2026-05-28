@@ -47,9 +47,9 @@ const HowItWorks = () => {
         {/* HEADING */}
         <motion.div
           className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          // initial={{ opacity: 0, y: 30 }}
+          // animate={inView ? { opacity: 1, y: 0 } : {}}
+          // transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-4xl md:text-5xl font-semibold 
             bg-gradient-to-b from-white to-purple-200 
@@ -65,9 +65,9 @@ const HowItWorks = () => {
         {/* STEPS */}
         <motion.div
           ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          // variants={containerVariants}
+          // initial="hidden"
+          // animate={inView ? "visible" : "hidden"}
           className="relative grid md:grid-cols-3 gap-10 items-center"
         >
 
@@ -88,7 +88,7 @@ const HowItWorks = () => {
     transition-all duration-300
 
     ${i === 1 
-      ? "-translate-y-6 scale-105 shadow-[0_0_60px_rgba(168,85,247,0.15)]" 
+      ? "translate-y-6 md:-translate-y-6 scale-105 shadow-[0_0_60px_rgba(168,85,247,0.15)]" 
       : "translate-y-6"
     }
   `}

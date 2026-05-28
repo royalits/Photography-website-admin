@@ -3,7 +3,7 @@ import { useState } from "react";
 import OnboardingModal from "./onboarding/OnboardingModal";
 
 const ForVisionaries = () => {
-      const [openModal, setOpenModal] = useState(false);
+const [openModal, setOpenModal] = useState(false);
   return (
     <section className="bg-[#100528] py-28 px-6 relative overflow-hidden">
 
@@ -147,7 +147,8 @@ const ForVisionaries = () => {
 
             {/* BUTTON */}
             <button 
-             onClick={() => setOpenModal(true)}
+            //  onClick={() => setOpenModal(true)}
+              onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
              className="
               mt-10 w-full py-3 rounded-xl
               bg-purple-400/20
