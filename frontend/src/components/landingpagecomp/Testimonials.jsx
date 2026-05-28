@@ -50,9 +50,9 @@ const Testimonials = () => {
           className="text-center text-4xl md:text-5xl font-semibold 
           bg-gradient-to-b from-white to-purple-200 
           bg-clip-text text-transparent mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          // initial={{ opacity: 0, y: 30 }}
+          // animate={inView ? { opacity: 1, y: 0 } : {}}
+          // transition={{ duration: 0.6, ease: "easeOut" }}
         >
           What the Community Says
         </motion.h2>
@@ -102,11 +102,11 @@ const Testimonials = () => {
 
               {/* USER */}
               <div className="flex items-center gap-4">
-                <img
+                {/* <img
                   src={item.img}
                   alt={item.name}
                   className="w-12 h-12 rounded-full object-cover border border-purple-400/30"
-                />
+                /> */}
 
                 <div>
                   <h4 className="text-white font-semibold text-sm">
