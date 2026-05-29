@@ -11,7 +11,7 @@ export default function Contact() {
     setLoading(true);
     const form = e.target;
     try {
-      await fetch("https://formsubmit.co/ajax/support@clicknow.co.in", {
+      await fetch("https://formsubmit.co/support@clicknow.co.in", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
