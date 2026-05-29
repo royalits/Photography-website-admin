@@ -1,32 +1,32 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
+  const formRef = useRef(null);
+  const submittedRef = useRef(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setLoading(true);
-    const form = e.target;
-    try {
-      await fetch("https://formsubmit.co/support@clicknow.co.in", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: form.name.value,
-          email: form.email.value,
-          subject: form.subject.value,
-          message: form.message.value,
-        }),
-      });
-      toast.success("Message sent successfully!");
-      form.reset();
-    } catch {
-      toast.error("Failed to send. Please try again.");
-    } finally {
+    submittedRef.current = true;
+  };
+
+  const handleSubmitFrameLoad = () => {
+    if (!submittedRef.current) return;
+
+    submittedRef.current = false;
+    toast.success("Message sent successfully!");
+    formRef.current?.reset();
+    setLoading(false);
+  };
+
+  const handleSubmitError = () => {
+    if (submittedRef.current) {
+      submittedRef.current = false;
       setLoading(false);
+      toast.error("Failed to send. Please try again.");
     }
   };
 
@@ -145,7 +145,18 @@ export default function Contact() {
 
         {/* FORM */}
         <Toaster position="top-right" toastOptions={{ style: { background: '#1c1530', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' } }} />
+        <iframe
+          title="contact-form-submit"
+          name="contact-form-submit"
+          className="hidden"
+          onLoad={handleSubmitFrameLoad}
+          onError={handleSubmitError}
+        />
         <motion.form
+          ref={formRef}
+          action="https://formsubmit.co/support@clicknow.co.in"
+          method="POST"
+          target="contact-form-submit"
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -162,6 +173,9 @@ export default function Contact() {
               We’ll get back to you as soon as possible.
             </p>
           </div>
+
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
 
           <input
             name="name"
